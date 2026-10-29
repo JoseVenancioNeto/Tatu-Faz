@@ -1,0 +1,18 @@
+{
+  "name": "TATU FAZ - Sistema de Registro Arqueológico",
+  "short_name": "TATU FAZ",
+  "description": "Sistema de Registro Arqueológico com Geolocalização, Digitalização 3D e Catalogação por IA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#b45309",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

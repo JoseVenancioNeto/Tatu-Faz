@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TATU FAZ</string>
+    <string name="title_activity_main">TATU FAZ</string>
+    <string name="package_name">com.engenheirosdoacai.tatufaz</string>
+    <string name="custom_url_scheme">com.engenheirosdoacai.tatufaz</string>
+</resources>

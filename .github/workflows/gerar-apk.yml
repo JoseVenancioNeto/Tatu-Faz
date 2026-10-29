@@ -1,0 +1,48 @@
+name: Gerar APK Android (TATU FAZ)
+
+on:
+  push:
+    branches: [ "*" ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    name: Compilar TATU FAZ APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Configurar Java JDK 21 (necessário para Android Gradle)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Instalar dependências npm
+        run: npm install --legacy-peer-deps
+
+      - name: Compilar Web App (Vite)
+        run: npm run build
+
+      - name: Sincronizar Capacitor Android
+        run: npx cap sync android
+
+      - name: Dar permissão ao Gradlew e Compilar APK
+        working-directory: ./android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Publicar APK pronto para Download
+        uses: actions/upload-artifact@v4
+        with:
+          name: TATU-FAZ-Android-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

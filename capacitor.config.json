@@ -1,0 +1,8 @@
+{
+  "appId": "com.engenheirosdoacai.tatufaz",
+  "appName": "TATU FAZ",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
