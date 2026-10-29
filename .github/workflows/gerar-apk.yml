@@ -5,6 +5,9 @@ on:
     branches: [ "*" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-apk:
     name: Compilar TATU FAZ APK
@@ -39,10 +42,20 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk ../TATU-FAZ.apk
 
-      - name: Publicar APK pronto para Download
+      - name: Publicar APK na aba Actions
         uses: actions/upload-artifact@v4
         with:
           name: TATU-FAZ-Android-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: TATU-FAZ.apk
           if-no-files-found: error
+
+      - name: Publicar APK pronto na aba Releases do GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0
+          name: "TATU FAZ - Aplicativo Android (APK)"
+          body: "Clique em **TATU-FAZ.apk** abaixo para baixar e instalar diretamente no celular Android."
+          files: TATU-FAZ.apk
+          prerelease: false
